@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    {{info}}
     <Todo/>
   </div>
 </template>
@@ -20,6 +19,11 @@ export default {
     return {
       info:null
     }
+  },
+  mounted() {
+    axios
+        .get('https://academy2.smw.tom.ru/valeria-danilchenko/api2')
+        .then(response => (this.info = response));
   }
 };
 </script>
