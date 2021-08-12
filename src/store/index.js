@@ -23,6 +23,7 @@ export default new Vuex.Store({
     allLists: [],
   },
   getters: {
+    allTodos: (state) => state.todos,
     remaining(state) {
       return state.todos.filter(todo => !todo.completed).length
     },
@@ -53,13 +54,9 @@ export default new Vuex.Store({
     DELETE_LIST (state, payload) {
       state.allLists = state.allLists.filter((list) => list.id !== payload.id)
     },
-    addTodo(state, todo) {
-      state.todos.push({
-        id: todo.id,
-        title: todo.title,
-        completed: false,
-        editing: false,
-      })
+    add_todo(state,todo){
+      state.todos.push(todo);
+      console.log(todo);
     },
     updateTodo(state, todo) {
       const index = state.todos.findIndex(item => item.id == todo.id)

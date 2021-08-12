@@ -50,10 +50,7 @@ export default {
   flex-direction: column;
   justify-content: space-between;
 }
-.adddelo {
-  display: flex;
-  justify-content: space-evenly;
-}
+
 .obshii{
   height: 500px;
   border: 1px solid black;
@@ -63,14 +60,6 @@ export default {
   display: flex;
   justify-content: space-between;
 }
-.listdel{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  text-align: center;
-}
-.deloblock{
-  border: 1px solid black;
-}
+
+
 </style>

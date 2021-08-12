@@ -1,12 +1,12 @@
 <template>
   <div class="listdel col-md-2">
     <div>
-      <div><a href="">список 1</a></div>
-      <div><a href="">список 2</a></div>
+      <div><button>Список 1</button></div>
+      <div><button>Список 2</button></div>
     </div>
     <div>
       <div><input type="text" placeholder="Поле ввода названия"></div>
-      <div><a href="">Добаввить список</a></div>
+      <div><button>Добавить список</button></div>
     </div>
   </div>
 </template>
@@ -20,5 +20,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
+.listdel{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
 </style>
