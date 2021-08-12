@@ -20,7 +20,6 @@ import Todo from "../components/Todo";
 import AddTodo from "../components/AddTodo";
 import AddDelo from "../components/AddDelo";
 
-
 export default {
   name: "Home",
   components: {
@@ -41,6 +40,7 @@ export default {
   }
 };
 </script>
+
 <style scoped lang="scss">
 .listdel,delo{
   border: 1px solid black;

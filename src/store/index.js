@@ -6,9 +6,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     filter: 'all',
-    todos: [
-
-    ],
+    todos: [],
+    qwe: []
   },
   getters: {
     allTodos: (state) => state.todos,
