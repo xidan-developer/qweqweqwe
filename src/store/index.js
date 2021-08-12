@@ -6,9 +6,12 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     filter: 'all',
-    todos: []
+    todos: [
+
+    ],
   },
   getters: {
+    allTodos: (state) => state.todos,
     remaining(state) {
       return state.todos.filter(todo => !todo.completed).length
     },
@@ -30,6 +33,10 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    add_todo(state,todo){
+      state.todos.push(todo);
+      console.log(todo);
+    },
     addTodo(state, todo) {
       state.todos.push({
         id: todo.id,
@@ -62,10 +69,8 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    addTodo(context, todo) {
-      setTimeout(() => {
-        context.commit('addTodo', todo)
-      }, 100)
+    addTodo({ commit }, todo) {
+      commit("add_todo",todo);
     },
     updateTodo(context, todo) {
       setTimeout(() => {

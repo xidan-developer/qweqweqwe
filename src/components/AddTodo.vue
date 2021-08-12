@@ -5,13 +5,13 @@
       <input type="checkbox">
     </div>
     <div>
-      <a href="">Дело 1</a>
+      <span>Дело 1</span>
     </div>
     <div>
       <span>10.08.2021 16:24</span>
     </div>
     <div>
-      <input type="checkbox">
+      <button>Удалить</button>
     </div>
   </div>
   <div class="d-flex deloblock">
@@ -19,13 +19,13 @@
       <input type="checkbox">
     </div>
     <div>
-      <a href="">Дело 1</a>
+      <span>Дело 2</span>
     </div>
     <div>
       <span>10.08.2021 16:24</span>
     </div>
     <div>
-      <input type="checkbox">
+      <button>Удалить</button>
     </div>
   </div>
   </div>
@@ -40,6 +40,9 @@ export default {
 
 <style scoped>
 .d-flex.deloblock {
+  border: 1px solid black;
+}
+.deloblock{
   border: 1px solid black;
 }
 </style>
