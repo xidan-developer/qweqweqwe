@@ -3,11 +3,24 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
+const urlApi ='https://academy2.smw.tom.ru/valeria-danilchenko/api2'
+
+async function postData(url = '', method ='', data = {}) {
+  const response = await fetch(url, {
+    method: method,
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+  return response.json()
+}
+
 export default new Vuex.Store({
   state: {
     filter: 'all',
     todos: [],
-    qwe: []
+    allLists: [],
   },
   getters: {
     remaining(state) {
@@ -31,6 +44,15 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    SET_LIST (state, payload) {
+      state.allLists = payload;
+    },
+    ADD_LIST (state, payload) {
+      state.allLists.push(payload)
+    },
+    DELETE_LIST (state, payload) {
+      state.allLists = state.allLists.filter((list) => list.id !== payload.id)
+    },
     addTodo(state, todo) {
       state.todos.push({
         id: todo.id,
@@ -63,10 +85,18 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    addTodo(context, todo) {
-      setTimeout(() => {
-        context.commit('addTodo', todo)
-      }, 100)
+    async loadLists({commit}) {
+      await fetch(urlApi)
+        .then (data => commit('SET_LIST', data))
+    },
+    async addList({commit}, payload) {
+      postData(urlApi, "POST", payload)
+          .then( data => { commit ('ADD_LIST', data) })
+    },
+    async delete({commit}, payload) {
+      postData(`${urlApi}/${payload.id}`, "DELETE", payload).then((payload) => {
+        commit("DELETE_LIST", payload)
+      });
     },
     updateTodo(context, todo) {
       setTimeout(() => {
