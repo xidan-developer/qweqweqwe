@@ -1,12 +1,8 @@
 <template>
   <div class="listdel col-md-2">
     <div>
-      <div><button>Список 1</button></div>
-      <div><button>Список 2</button></div>
-    </div>
-    <div>
-      <div><input type="text" placeholder="Поле ввода названия"></div>
-      <div><button>Добавить список</button></div>
+      <div><input v-model="newList" type="text" placeholder="Поле ввода названия"></div>
+      <div><button @click="addList(newList)">Добавить список</button></div>
     </div>
   </div>
 </template>
@@ -15,7 +11,16 @@
 
 export default {
   name: "Todo",
-
+  data () {
+    return {
+      newList: ''
+    }
+  },
+  methods: {
+    addList (name) {
+      this.$store.dispatch('addList', name)
+    }
+  }
 }
 </script>
 

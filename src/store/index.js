@@ -1,16 +1,23 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import axios from "axios";
 
 Vue.use(Vuex);
+Vue.use(axios)
 
 const urlApi ='https://academy2.smw.tom.ru/valeria-danilchenko/api2'
 
 async function postData(url = '', method ='', data = {}) {
   const response = await fetch(url, {
     method: method,
+    mode: 'cors', // no-cors, *cors, same-origin
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: 'same-origin', // include, *same-origin, omit
     headers: {
       'Content-Type': 'application/json'
     },
+    redirect: 'follow', // manual, *follow, error
+    referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade,
     body: JSON.stringify(data)
   })
   return response.json()
@@ -86,9 +93,9 @@ export default new Vuex.Store({
       await fetch(urlApi)
         .then (data => commit('SET_LIST', data))
     },
-    async addList({commit}, payload) {
-      postData(urlApi, "POST", payload)
-          .then( data => { commit ('ADD_LIST', data) })
+    async addList({commit}, payload){
+      await axios.get(urlApi, { params: payload })
+          .then( commit('ADD_LIST', payload) )
     },
     async delete({commit}, payload) {
       postData(`${urlApi}/${payload.id}`, "DELETE", payload).then((payload) => {
