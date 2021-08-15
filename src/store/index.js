@@ -52,6 +52,9 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    ADD_TODO (state, payload) {
+      state.allLists.push(payload)
+    },
     SET_LIST (state, payload) {
       state.allLists = payload;
     },
@@ -61,10 +64,7 @@ export default new Vuex.Store({
     DELETE_LIST (state, payload) {
       state.allLists = state.allLists.filter((list) => list.id !== payload.id)
     },
-    add_todo(state,todo){
-      state.todos.push(todo);
-      console.log(todo);
-    },
+
     updateTodo(state, todo) {
       const index = state.todos.findIndex(item => item.id == todo.id)
       state.todos.splice(index, 1, {
@@ -89,6 +89,14 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    async addTodo({commit}) {
+      await fetch(urlApi)
+          .then (data => commit('ADD_TODO', data))
+    },
+
+
+
+
     async loadLists({commit}) {
       await fetch(urlApi)
         .then (data => commit('SET_LIST', data))
